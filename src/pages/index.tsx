@@ -11,6 +11,7 @@ import ThemeSwitch from '@/components/themeSwitch';
 // const CustomCollapse = dynamic(() => import('../components/Collapse'));
 
 const Home = () => {
+
   return (
     <div className={styles.container}>
       <ThemeSwitch/>

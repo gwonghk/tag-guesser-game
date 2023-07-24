@@ -1,9 +1,9 @@
 import React from 'react';
 import type { AppProps } from 'next/app';
 
-import { ThemeProvider } from 'next-themes';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { NextUIProvider } from '@nextui-org/react';
+import { NextUIProvider, createTheme } from '@nextui-org/react';
 import { createGlobalStyle } from 'styled-components';
 
 const queryClient = new QueryClient();
@@ -20,16 +20,28 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const lightTheme = createTheme({
+  type: 'light',
+});
+const darkTheme = createTheme({
+  type: 'dark',
+});
+
 const App = ({ Component, pageProps }: AppProps) => {
-    return <>
-    <GlobalStyle />
-    <ThemeProvider>
-        <NextUIProvider>
-            <QueryClientProvider client={queryClient}>
-                <Component  {...pageProps} />
-            </QueryClientProvider>
-        </NextUIProvider>;
-    </ThemeProvider>;
-    </>;
+  return <>
+    <NextThemesProvider
+      defaultTheme="dark"
+      attribute="class"
+      value={{
+        light: lightTheme.className,
+        dark: darkTheme.className
+      }}>
+      <NextUIProvider>
+        <QueryClientProvider client={queryClient}>
+          <Component  {...pageProps} />
+        </QueryClientProvider>
+      </NextUIProvider>
+    </NextThemesProvider>
+  </>;
 };
 export default App;

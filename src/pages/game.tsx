@@ -1,7 +1,7 @@
 import React, { type ReactElement } from 'react';
 import { type Anime, type JikanResource } from '@tutkli/jikan-ts';
-
 import { useQuery } from 'react-query';
+import Image from 'next/image';
 
 const Game = (): ReactElement => {
   const fetchRandomAnime = async (): Promise<Anime> =>
@@ -35,8 +35,12 @@ const Game = (): ReactElement => {
         <h1>
           <span>{title}</span>
         </h1>
-        <img src={imgurl}></img>
+        <div style={{ width: '400px', height: '400px', position: 'relative' }}>
+          <Image alt="cover image" src={imgurl} layout="fill" objectFit="contain"></Image>
+        </div>
+        <br />
         Tags:
+        <br />
         {tags}
         {/* <ButtonLink
               href="https://github.com/hoangvvo/nextjs-mongodb-app"
@@ -45,6 +49,8 @@ const Game = (): ReactElement => {
             >
               GitHub
             </ButtonLink> */}
+        <br />
+        <br />
         <p>Description</p>
       </div>
     </div>

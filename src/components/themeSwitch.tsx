@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 
@@ -16,7 +15,7 @@ const ThemeSwitch = () => {
   }
 
   return (
-    <select value={theme} onChange={e => setTheme(e.target.value)}>
+    <select value={theme} onChange={(e) => setTheme(e.target.value)}>
       <option value="system">System</option>
       <option value="dark">Dark</option>
       <option value="light">Light</option>

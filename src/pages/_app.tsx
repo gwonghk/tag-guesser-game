@@ -1,4 +1,3 @@
-import React from 'react';
 import type { AppProps } from 'next/app';
 
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
@@ -28,20 +27,23 @@ const darkTheme = createTheme({
 });
 
 const App = ({ Component, pageProps }: AppProps) => {
-  return <>
-    <NextThemesProvider
-      defaultTheme="dark"
-      attribute="class"
-      value={{
-        light: lightTheme.className,
-        dark: darkTheme.className
-      }}>
-      <NextUIProvider>
-        <QueryClientProvider client={queryClient}>
-          <Component  {...pageProps} />
-        </QueryClientProvider>
-      </NextUIProvider>
-    </NextThemesProvider>
-  </>;
+  return (
+    <>
+      <NextThemesProvider
+        defaultTheme="dark"
+        attribute="class"
+        value={{
+          light: lightTheme.className,
+          dark: darkTheme.className,
+        }}
+      >
+        <NextUIProvider>
+          <QueryClientProvider client={queryClient}>
+            <Component {...pageProps} />
+          </QueryClientProvider>
+        </NextUIProvider>
+      </NextThemesProvider>
+    </>
+  );
 };
 export default App;
